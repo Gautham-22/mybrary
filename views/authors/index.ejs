@@ -1,0 +1,13 @@
+<p>Search</p>
+<form action="/authors" method="GET">
+    <input type="text" name="name" required autocomplete="off" placeholder="author name">
+    <button type="submit">Search</button>
+</form>
+<p>Existing authors</p>
+<% if(authors.length > 0) { %>
+    <% authors.forEach(author => { %>
+        <h3><%= author.name %></h3>
+    <% }) %>
+<% } else {%>
+    <p>No authors found!</p>
+<% } %>    
