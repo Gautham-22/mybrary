@@ -12,18 +12,23 @@ const authorRouter = require("./routes/author");
 const app = express();
 const PORT = process.env.PORT || 3000;  // process.env.PORT will be populated by Heroku
 
-mongoose.connect(process.env.DATABASE_URL,{   // DATABASE_URL will be set with mongoDB cluster in heroku
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-    useFindAndModify:false
-})
-.then(() => {
-    console.log("Connected to mongodb");
-})
-.catch((err) => {
-    console.log(err.message);
-    process.exit(1);
-})
+// mongoose.connect(process.env.DATABASE_URL,{ 
+//     useNewUrlParser:true,
+//     useUnifiedTopology:true,
+//     useFindAndModify:false
+// })
+// .then(() => {
+//     console.log("Connected to mongodb");
+// })
+// .catch((err) => {
+//     console.log(err.message);
+//     process.exit(1);
+// })
+
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });  // DATABASE_URL will be set with mongoDB cluster in heroku
+const db = mongoose.connection;
+db.on('error', error => console.error(error));
+db.once('open', () => console.log('Connected to Mongoose'));
 
 app.set("view engine","ejs");
 app.set("layout","layouts/layout");
