@@ -25,10 +25,19 @@ const PORT = process.env.PORT || 3000;  // process.env.PORT will be populated by
 //     process.exit(1);
 // })
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });  // DATABASE_URL will be set with mongoDB cluster in heroku
-const db = mongoose.connection;
-db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose'));
+const databaseConnection = async () => {
+    try {
+        let connection = await mongoose.connect(process.env.DATABASE_URL, {   // DATABASE_URL will be set with mongoDB cluster in heroku
+            useNewUrlParser: true,
+            useFindAndModify:false 
+        });
+        console.log("Connected to mongodb");
+    } catch(err) {
+        console.log(err);
+        process.exit(1);
+    }
+}
+databaseConnection();
 
 app.set("view engine","ejs");
 app.set("layout","layouts/layout");
