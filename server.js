@@ -34,7 +34,6 @@ const databaseConnection = async () => {
         console.log("Connected to mongodb");
     } catch(err) {
         console.log(err);
-        process.exit(1);
     }
 }
 databaseConnection();
