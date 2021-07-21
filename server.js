@@ -12,7 +12,7 @@ app.set("view engine","ejs");
 app.set("layout","layouts/layout");
 
 const mongoose = require("mongoose");
-let indexRouter, authorRouter;
+let indexRouter, authorRouter, bookRouter;
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser:true,
     useFindAndModify:false
@@ -21,8 +21,10 @@ mongoose.connect(process.env.DATABASE_URL, {
     console.log("Connected to mongodb"); 
     indexRouter = require("./routes/index");           
     authorRouter = require("./routes/author");
+    bookRouter = require("./routes/book");
     app.use("/",indexRouter);                           
     app.use("/authors",authorRouter);
+    app.use("/books",bookRouter);
 })
 .catch((err) => {
     console.log(err.message);

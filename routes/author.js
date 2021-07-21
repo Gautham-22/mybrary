@@ -11,7 +11,6 @@ router.get("/",async (req,res) => {
     }
     try {
         const authors = await Author.find(options);
-        console.log("Authors : ",authors);
         res.render("authors/index",{authors});
     } catch(err) {
         res.redirect("/");
@@ -19,9 +18,10 @@ router.get("/",async (req,res) => {
 });
 
 // form for adding a new author
-router.get("/new",(req,res) => {
+router.get("/new",async (req,res) => {
+    const author = await new Author(); 
     res.render("authors/new",{
-        author : {name:""},
+        author : author,
         error : null
     });
 });
