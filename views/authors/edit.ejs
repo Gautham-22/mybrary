@@ -1,0 +1,7 @@
+<p>Edit author</p>
+<%- include("../errorMessage.ejs") %>
+<form action="/authors/<%= author.id %>?_method=PUT" method="POST">
+    <input type="text" name="name" value="<%= author.name %>" required autocomplete="off">
+    <a href="/authors">Cancel</a>    
+    <button type="submit">Update</button>
+</form>

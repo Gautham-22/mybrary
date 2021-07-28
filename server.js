@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== "production") {   // value of NODE_ENV will be produ
 const express = require("express");
 const ejs = require("ejs");
 const expressEjsLayouts = require("express-ejs-layouts");
+const methodOverride = require("method-override");
 
 const app = express();
 const PORT = process.env.PORT || 3000;  // process.env.PORT will be populated by Heroku
@@ -34,6 +35,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.use(express.static("public"));
 app.use(express.urlencoded({extended:false, limit : "50mb"}));
 app.use(express.json());
+app.use(methodOverride("_method"));  // overrides the method of the http request with value of query "_method" if present
 app.use(expressEjsLayouts);
 
 app.listen(PORT,() => {
