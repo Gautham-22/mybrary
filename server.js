@@ -32,7 +32,8 @@ mongoose.connect(process.env.DATABASE_URL, {
 })
 
 app.use(express.static("public"));
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:false, limit : "50mb"}));
+app.use(express.json());
 app.use(expressEjsLayouts);
 
 app.listen(PORT,() => {
