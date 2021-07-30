@@ -1,0 +1,11 @@
+<%- include("../errorMessage.ejs") %>
+<h2><%= book.title %></h2>
+<img src="<%= book.coverImagePath %>" alt="book" width="200" height="225"> 
+<p>Author : <%= book.author.name %></p>
+<p>Published date : <%= book.publishDate.toDateString() %></p>
+<p>Page count : <%= book.pageCount %></p>
+<p>Description : <%= book.description %></p>
+<a href="/books/<%= book.id %>/edit">Edit</a>
+<form action="/books/<%= book.id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>            
+</form>

@@ -34,7 +34,8 @@ router.get("/:id",async (req,res) => {
         const books = await Book.find({author : req.params.id}).limit(10).exec();
         res.render("authors/show",{
             author : author,
-            booksByAuthor : books
+            booksByAuthor : books,
+            error : null
         });
     } catch {
         res.redirect("/authors");
@@ -91,19 +92,23 @@ router.put("/:id",async (req,res) => {
 
 // deletes author
 router.delete("/:id",async (req,res) => { 
-    let author;
+    let author, books;
     try {
         author = await Author.findById(req.params.id);
+        books = await Book.find({author : req.params.id}).limit(10).exec();
         await author.remove();
         res.redirect("/authors");
     } catch(err) {
         if(author) {
-            res.redirect(`/authors/${author.id}`);
+            res.render("authors/show",{
+                author : author,
+                booksByAuthor : books,
+                error : {msg : err.message}
+            });
         }else {
             res.redirect("/");
         }
     }
 })
-
 
 module.exports = router;
