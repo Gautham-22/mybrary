@@ -1,0 +1,39 @@
+/* font-family: 'Lobster', cursive;
+font-family: 'Roboto', sans-serif; */
+
+@import url("./shared/variables.css");
+@import url("./shared/header.css");
+@import url("./shared/buttons.css");
+
+:root {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;  
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right,var(--color-body-bg-dark),var(--color-body-bg-light));
+    color: var(--color-body-text);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-body-text);
+}
+
+.container {
+    width: min(80%,1100px);
+    margin: 1rem auto 2rem;
+}
+
+.inner-container {
+    margin: 1rem 2rem 0rem;
+}

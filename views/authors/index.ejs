@@ -1,4 +1,4 @@
-<p>Search</p>
+<h2 class="sub-title">Search author</h2>
 <form action="/authors" method="GET">
     <input type="text" name="name" required autocomplete="off" placeholder="author name">
     <button type="submit">Search</button>
@@ -7,12 +7,14 @@
 <% if(authors.length > 0) { %>
     <% authors.forEach(author => { %>
         <h3><%= author.name %></h3>
-        <a href="/authors/<%= author.id %>">View</a>
-        <a href="/authors/<%= author.id %>/edit">Edit</a>
-        <form action="/authors/<%= author.id %>?_method=DELETE" method="POST">
-            <!-- the post method will be overridden with delete -->
-            <button type="submit">Delete</button>            
-        </form>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
+            <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+            <form action="/authors/<%= author.id %>?_method=DELETE" method="POST">
+                <!-- the post method will be overridden with delete -->
+                <button class="btn btn-danger" type="submit">Delete</button>            
+            </form>
+        </div>
     <% }) %>
 <% } else {%>
     <p>No authors found!</p>

@@ -1,4 +1,4 @@
-<p>Edit book</p>
+<h2 class="sub-title">Edit book</h2>
 <%- include("../errorMessage.ejs") %>
 <form action="/books/<%= book.id %>?_method=PUT" method="POST">
     <div>
@@ -39,6 +39,6 @@
         <textarea name="description" cols="30" rows="10"><%= book.description %></textarea>
     </div>
     <br>
-    <a href="/books">Cancel</a>    
-    <button type="submit">Update</button>
+    <a class="btn btn-danger" href="/books">Cancel</a>    
+    <button class="btn btn-primary" type="submit">Update</button>
 </form>

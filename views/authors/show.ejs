@@ -1,9 +1,11 @@
 <%- include("../errorMessage.ejs") %>
-<h2><%= author.name %></h2>
-<a href="/authors/<%= author.id %>/edit">Edit</a>
-<form action="/authors/<%= author.id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>            
-</form>
+<h2 class="sub-title"><%= author.name %></h2>
+<div class="btn-row">
+    <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+    <form action="/authors/<%= author.id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger" type="submit">Delete</button>            
+    </form>
+</div>  
 <br>
 <% if(booksByAuthor.length > 0) { %>
     <h2>Books by author :</h2>
