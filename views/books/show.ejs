@@ -5,7 +5,9 @@
 <p>Published date : <%= book.publishDate.toDateString() %></p>
 <p>Page count : <%= book.pageCount %></p>
 <p>Description : <%= book.description %></p>
-<a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit</a>
-<form action="/books/<%= book.id %>?_method=DELETE" method="POST">
-    <button class="btn btn-danger" type="submit">Delete</button>            
-</form>
+<div class="btn-row btn-row-end">
+    <a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit</a>
+    <form action="/books/<%= book.id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger" type="submit">Delete</button>            
+    </form>
+</div>

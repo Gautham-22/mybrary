@@ -10,8 +10,13 @@
 }
 
 .btn-row {
+    margin-top: 1rem;
     display: flex;
     align-items: center;
+}
+
+.btn-row-end {
+    justify-content: flex-end;
 }
 
 .btn-row > * {

@@ -1,7 +1,14 @@
 <h2 class="sub-title">Edit author</h2>
 <%- include("../errorMessage.ejs") %>
 <form action="/authors/<%= author.id %>?_method=PUT" method="POST">
-    <input type="text" name="name" value="<%= author.name %>" required autocomplete="off">
-    <a class="btn btn-danger" href="/authors">Cancel</a>    
-    <button class="btn btn-primary" type="submit">Update</button>
+    <div class="form-row">
+        <div class="form-item">
+            <label for="name">Author name:</label>
+            <input type="text" name="name" id="name" value="<%= author.name %>" required autocomplete="off">
+        </div>
+    </div>
+    <div class="btn-row btn-row-end">
+        <a class="btn btn-danger" href="/authors">Cancel</a>    
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
 </form>

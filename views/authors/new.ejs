@@ -1,7 +1,14 @@
 <h2 class="sub-title">New author</h2>
 <%- include("../errorMessage.ejs") %>
 <form action="/authors" method="POST">
-    <input type="text" name="name" required autocomplete="off">
-    <a class="btn btn-danger" href="/authors">Cancel</a>    
-    <button class="btn btn-primary" type="submit">Create</button>
+    <div class="form-row">
+        <div class="form-item">
+            <label for="name">Author name:</label>
+            <input type="text" name="name" required autocomplete="off">
+        </div>
+    </div>
+    <div class="btn-row btn-row-end">
+        <a class="btn btn-danger" href="/authors">Cancel</a>    
+        <button class="btn btn-primary" type="submit">Create</button>
+    </div>
 </form>
