@@ -23,7 +23,7 @@
         <input class="btn btn-primary" type="submit" value="Search">
     </div>
 </form>
-<div class="books" style="margin-top: 1rem;">
+<div class="book-grid" style="margin-top: 1rem;">
     <% books.forEach(book => { %>
         <a href="/books/<%= book.id %>">
             <img src="<%= book.coverImagePath %>" alt="book" width="200" height="225">  

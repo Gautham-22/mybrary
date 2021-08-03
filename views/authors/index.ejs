@@ -3,7 +3,7 @@
     <div class="form-row">
         <div class="form-item">
             <label for="name">Author name:</label>
-            <input type="text" name="name" id="name" required autocomplete="off">
+            <input type="text" name="name" id="name" value="<%= searchOptions.name %>" required autocomplete="off">
         </div>
     </div>
     <div class="btn-row btn-row-end">
@@ -12,9 +12,9 @@
 </form>
 <% if(authors.length > 0) { %>
     <% authors.forEach(author => { %>
-        <div class="author" style="margin-top: 1rem;">
+        <div class="author">
             <h3><%= author.name %></h3>
-            <div class="btn-row">
+            <div class="btn-row authors-btn-row">
                 <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
                 <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
                 <form action="/authors/<%= author.id %>?_method=DELETE" method="POST">

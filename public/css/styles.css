@@ -5,6 +5,8 @@ font-family: 'Roboto', sans-serif; */
 @import url("./shared/header.css");
 @import url("./shared/buttons.css");
 @import url("./shared/forms.css");
+@import url("./shared/authors.css");
+@import url("./shared/books.css");
 
 :root {
     font-family: 'Roboto', sans-serif;
@@ -31,10 +33,14 @@ a {
 }
 
 .container {
-    width: min(80%,1100px);
+    width: min(90%,1100px);
     margin: 1rem auto 2rem;
 }
 
 .inner-container {
     margin: 1rem 2rem 0rem;
+}
+
+.error-msg {
+    color: var(--color-btn-bg-danger-dark);
 }

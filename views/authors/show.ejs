@@ -7,11 +7,14 @@
     </form>
 </div>  
 <br>
+
 <% if(booksByAuthor.length > 0) { %>
     <h2 style="margin-bottom: 1rem;">Books by author :</h2>
-    <% booksByAuthor.forEach(book => { %>
-        <a href="/books/<%= book.id %>">
-            <img src="<%= book.coverImagePath %>" alt="book" width="200" height="225"> 
-        </a> 
-    <% }) %>
+    <div class="book-grid">
+        <% booksByAuthor.forEach(book => { %>
+            <a href="/books/<%= book.id %>">
+                <img src="<%= book.coverImagePath %>" alt="book" width="200" height="225"> 
+            </a> 
+        <% }) %>
+    </div>
 <% } %>

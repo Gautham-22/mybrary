@@ -1,13 +1,24 @@
 <%- include("../errorMessage.ejs") %>
 <h2 class="sub-title"><%= book.title %></h2>
-<img src="<%= book.coverImagePath %>" alt="book" width="200" height="225"> 
-<p>Author : <%= book.author.name %></p>
-<p>Published date : <%= book.publishDate.toDateString() %></p>
-<p>Page count : <%= book.pageCount %></p>
-<p>Description : <%= book.description %></p>
-<div class="btn-row btn-row-end">
-    <a class="btn btn-primary" href="/books/<%= book.id %>/edit">Edit</a>
-    <form action="/books/<%= book.id %>?_method=DELETE" method="POST">
-        <button class="btn btn-danger" type="submit">Delete</button>            
-    </form>
+<div class="book-details">
+    <div>
+        <img src="<%= book.coverImagePath %>" alt="book" width="200" height="225"> 
+        <div class="btn-row book-details-btn-grid">
+            <a class="btn btn-primary edit" href="/books/<%= book.id %>/edit">Edit</a>
+            <form action="/books/<%= book.id %>?_method=DELETE" class="delete" method="POST">
+                <button class="btn btn-danger" type="submit">Delete</button>            
+            </form>
+            <a class="btn btn-primary view" href="/authors/<%= book.author.id %>">View Author</a>
+        </div>
+    </div>  
+    <div class="book-details-grid">
+        <div class="book-details-label">Author:</div>
+        <div><%= book.author.name %></div>
+        <div class="book-details-label">Published date:</div>
+        <div> <%= book.publishDate.toDateString() %></div>
+        <div class="book-details-label">Page count:</div>
+        <div><%= book.pageCount %></div>
+        <div class="book-details-label">Description:</div>
+        <div><%= book.description %></div>
+    </div>
 </div>

@@ -7,12 +7,14 @@ const Book = require("../models/book");
 // Authors route for showing and searching existing users
 router.get("/",async (req,res) => {
     let options = {};
+    let searchOptions = { name : "" };
     if(req.query.name) {
         options.name = new RegExp(req.query.name,"i");
+        searchOptions.name = req.query.name;
     }
     try {
         const authors = await Author.find(options);
-        res.render("authors/index",{authors});
+        res.render("authors/index",{authors, searchOptions});
     } catch(err) {
         res.redirect("/");
     }
