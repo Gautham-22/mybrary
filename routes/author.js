@@ -9,7 +9,7 @@ router.get("/",async (req,res) => {
     let options = {};
     let searchOptions = { name : "" };
     if(req.query.name) {
-        options.name = new RegExp(req.query.name,"i");
+        options.name = new RegExp(req.query.name,"i"); // case insesitive regular expression
         searchOptions.name = req.query.name;
     }
     try {
@@ -44,7 +44,6 @@ router.get("/:id",async (req,res) => {
     }
 });
 
-
 // for displaying the edit form for author
 router.get("/:id/edit",async (req,res) => {
     try {
@@ -55,7 +54,7 @@ router.get("/:id/edit",async (req,res) => {
     }
 });
 
-// Handles form submission of "/new"
+// Handles form submission of "/authors/new"
 router.post("/",async (req,res) => {
     const newAuthor = new Author({name : req.body.name});
     try {
@@ -83,7 +82,7 @@ router.put("/:id",async (req,res) => {
             res.render("authors/edit",{
                 author : author, 
                 error : {
-                    msg : "Error while updating the info!"
+                    msg : "Error while updating the author!"
                 }
             });
         }else {

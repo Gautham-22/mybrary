@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;  // process.env.PORT will be populated by Heroku
 
 app.set("view engine","ejs");
-app.set("layout","layouts/layout");
+app.set("layout","layouts/layout");  // changing default location of layout to layouts/layout (used by expressEjsLayouts)
 
 const mongoose = require("mongoose");
 let indexRouter, authorRouter, bookRouter;
@@ -18,7 +18,7 @@ mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser:true,
     useFindAndModify:false
 })
-.then(() => {           // makes sure that models are loaded and used after connection
+.then(() => {           // makes sure that routes & models are loaded and used after connection
     console.log("Connected to mongodb"); 
     indexRouter = require("./routes/index");           
     authorRouter = require("./routes/author");
@@ -35,8 +35,8 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.use(express.static("public"));
 app.use(express.urlencoded({extended:false, limit : "50mb"}));
 app.use(express.json());
+app.use(expressEjsLayouts);          // by default, it will look for layout.ejs under views folder for each render     
 app.use(methodOverride("_method"));  // overrides the method of the http request with value of query "_method" if present
-app.use(expressEjsLayouts);
 
 app.listen(PORT,() => {
     console.log("Server started running...");

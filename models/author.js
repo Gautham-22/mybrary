@@ -8,8 +8,9 @@ const authorSchema = new mongoose.Schema({
     }
 });
 
-authorSchema.pre("remove",function(next) {  // a middleware that will be executed before remove function
-    Book.find({author : this.id},(err,books) => {
+// for making sure that the author to be deleted has no books
+authorSchema.pre("remove",function(next) {              // a middleware that will be executed before remove function
+    Book.find({author : this.id},(err,books) => {       // 'this' refers to the author object with which remove is called
         if(err) {
             next(err);
         } else if(books.length > 0) {  

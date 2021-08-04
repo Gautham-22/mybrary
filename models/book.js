@@ -5,14 +5,14 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description : {
+    description : {     // optional
         type: String
     },
     publishDate: {
         type: Date,
         required: true
     },
-    createdAt : {
+    createdAt : {       // storing created time for recent uploads   
         type: Date,
         required: true,
         default: Date.now
@@ -22,7 +22,7 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     author : {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,  // id of the author object - acts as link b/n two schemas 
         required: true,
         ref: "Author"
     },
@@ -30,12 +30,13 @@ const bookSchema = new mongoose.Schema({
         type: Buffer,
         required: true
     },
-    coverImageType : {
+    coverImageType : {      // later required for converting buffer back to image
         type: String,
         required: true
     }
 });
 
+// a virtual property, can be accessed by - book.coverImagePath
 bookSchema.virtual('coverImagePath').get(function() {
     if (this.coverImage != null && this.coverImageType != null) {
       return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`

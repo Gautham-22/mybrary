@@ -2,21 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Author = require("../models/author");
 const Book = require("../models/book");
-
 const imageMimeTypes = ["image/png","image/jpeg","image/gif"];
 
-// const multer = require("multer");
-// const coverImageDestination = "uploads/coverfiles";
-// const uploadPath = path.join("public",coverImageDestination);
-
-// const upload = multer({
-//     dest: uploadPath,
-//     fileFilter : (req,file,cb) => {
-//         console.log("Inside fileFilter : ",file);
-//         cb(null,imageMimeTypes.includes(file.mimetype));
-//     }
-// })
-
+// Books route for showing and searching existing books
 router.get("/",async (req,res) => {
     let query = Book.find();
     if(req.query.title) {
@@ -36,14 +24,16 @@ router.get("/",async (req,res) => {
     }
 });
 
+// form for adding a new book
 router.get("/new",async (req,res) => {
     const book = new Book();
     renderBook(res, "new", book, null);  // 3rd parameter is error if any
 });
 
+// for viewing the book
 router.get("/:id",async (req,res) => {
     try {
-        const book = await Book.findById(req.params.id).populate("author").exec();
+        const book = await Book.findById(req.params.id).populate("author").exec(); // author property of book will be changed to respective author object itself
         if(book) {
             res.render("books/show", {book : book, error : null});
         }else {
@@ -54,6 +44,7 @@ router.get("/:id",async (req,res) => {
     }
 });
 
+// for displaying the edit form for book
 router.get("/:id/edit",async (req,res) => {
     try {
         const book = await Book.findById(req.params.id);
@@ -63,6 +54,7 @@ router.get("/:id/edit",async (req,res) => {
     }
 });
 
+// Handles form submission of "/books/new"
 router.post("/",async (req,res) => {
     const newBook = new Book({
         title : req.body.title,
@@ -84,6 +76,7 @@ router.post("/",async (req,res) => {
     }
 });
 
+// updates book
 router.put("/:id",async (req,res) => {
     let book;
     try {
@@ -110,6 +103,7 @@ router.put("/:id",async (req,res) => {
     }
 });
 
+// deletes book
 router.delete("/:id",async (req,res) => {
     let book;
     try {
